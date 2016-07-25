@@ -1,0 +1,160 @@
+#-*-coding:utf-8-*-
+#/usr/bin/env python
+
+import shutil
+def verify_old_passwd(dict):
+    """
+
+    :param dict: 将符合条件的用户名和密码放入字典中,待modify_pw调用,(只调用dict的key)
+    :return:
+    在用户修改密码或删除用户时,需要进行密码验证,如果验证不通过,则不能进行下一步操作
+    验证有三次机会,三次后,会强制退出
+    缺陷:如果用户名不存在,会直接退出
+    """
+    username = input("Please input the username which you want to modify:")
+    start = 0
+    with open("account",'r+',encoding='utf-8') as account:
+
+
+        for line in account:
+            li = line.strip()
+            account_list = li.split("&")
+            # print(account_list)
+            if account_list[0] != username:
+                continue
+            else:
+                while start < 3:
+                    old_passwd = input("Please input old password:")
+
+                    if account_list[1] == old_passwd:
+                        dict[account_list[0]]=old_passwd
+
+                        return True
+                        break
+                    else:
+                        start += 1
+                        if 3 - start > 0:
+                            print("Wrong password, please try again,you still have " + str(3-start) + "chance!")
+                        else:
+                            print("You have input wrong password 3 times, now force quit!")
+                            break
+
+            return False
+# properties = open("text.txt",'rb+')
+# lines = properties.readlines()
+# d=""
+# for line in lines:
+#     c = line.replace("my name is abc", "my name is efg")
+#     d += c
+#     properties.seek(0)      #不要让python记住执行到这里，从文件头还始
+#     properties.truncate()   #清空文件
+#     properties.write(d)
+#     properties.close()
+# def modify_pw(username,new_password):
+#     old_account = open("account",'r+',encoding='utf-8')
+#     for line in old_account:
+#         li = line.strip()
+#         account_list = li.split("&")
+#         if account_list[0] == username:
+#             marker = 0
+#             while marker < 3:
+#                 first_new_password = input("Please input new password:")
+#                 second_new_password = input("Please input new password again:")
+#                 if first_new_password == second_new_password:
+#                     new_password = second_new_password
+#                     return new_password
+#                 else:
+#                     marker += 1
+#                     if 3 - marker > 0:
+#                         print("The passwords you typed do not match, please try again, you still have " + str(3-marker)+ " chance")
+#                     else:
+#                         print("Password modification failed! quit force!")
+#                         quit()
+#     old_account.close()
+#     properties = open("account",'r+',encoding='utf-8')
+#     lines = properties.readlines()
+#     d=""
+#     for line in lines:
+#         c = line.replace("lisa&123qwe","lisa&asd")
+#         d += c
+#     properties.seek(0)      #不要让python记住执行到这里，从文件头还始
+#     properties.truncate()   #清空文件
+#     properties.write(d)
+#     properties.close()
+
+def del_user(username):
+    """
+    同修改密码操作:
+    del_user和verify_old_password共同委会一个字典,该字典里面有需要进行删除的用户名.
+    对account文件进行循环,如果用户名等于字典里面的用户名,直接不做操作,如果用户名不等于字典里面的应户名
+    直接将该line放入new_account中,最后,用new_account复制到account
+    :param username:
+    :param new_password:
+    :return:
+    """
+    with open("account",'r+',encoding='utf-8') as old_account,open("new_account",'w') as new_account:
+        for line in old_account:
+            li = line.strip()
+            account_list = li.split("&")
+            if account_list[0] == username:
+                continue
+            else:
+                new_account.write(line)
+
+def modify_pw(username,new_password):
+    """
+    modify_pw和verify_old_password共同委会一个字典,该字典里面有需要进行修改密码的用户名.
+    对account文件进行循环,如果用户名等于字典里面的用户名,则输入新的密码(两次),两次密码一致后,将新的用户名密码放入new_account中,如果用户名不等于字典里面的应户名
+    直接将该line放入new_account中,最后,用new_account复制到account
+    :param username:
+    :param new_password:
+    :return:
+    """
+    with open("account",'r+',encoding='utf-8') as old_account,open("new_account",'w') as new_account:
+        for line in old_account:
+            li = line.strip()
+            account_list = li.split("&")
+            if account_list[0] == username:
+                marker = 0
+                while marker < 3:
+                    first_new_password = input("Please input new password:")
+                    second_new_password = input("Please input new password again:")
+                    if first_new_password == second_new_password:
+                        new_account.write(username+"&"+second_new_password+"\n")
+                        # new_account.write(line+"\n")
+                        print("Modify password successfully!")
+                        break
+                    else:
+                        marker += 1
+                        if 3 - marker > 0:
+                            print("The passwords you typed do not match, please try again, you still have " + str(3-marker)+ " chance")
+                        else:
+                            print("Password modification failed! quit force!")
+                            quit()
+            else:
+                new_account.write(line)
+
+def main():
+    dict={}
+    # user_list = []
+    if verify_old_passwd(dict):
+        for i in dict.keys():
+            pass
+
+        modify_pw(username=i,new_password="qqqqqqq")
+    else:
+        quit()
+    shutil.copyfile("new_account","account")
+
+    dict1={}
+    # user_list = []
+    if verify_old_passwd(dict1):
+        for i in dict1.keys():
+            pass
+
+        del_user(username=i)
+    else:
+        quit()
+    shutil.copyfile("new_account","account")
+main()
+# modify_pw()
