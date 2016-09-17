@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+
+<form action="https://www.sogou.com/web" method="post" enctype="multipart/form-data">
+    <!--multipart/form-data 数据分段发送-->
+
+    <!--get: 1.提交的键值对.放在地址栏中url后面. 2.安全性相对较差. 3.对提交内容的长度有限制.-->
+
+    <!--post:1.提交的键值对 不在地址栏. 2.安全性相对较高. 3.对提交内容的长度理论上无限制.-->
+    <!--action表单提交到哪-->
+    <p>用户名 <input type="text" name="query" value="allan"></p>
+    <p>密码 <input type="password" name="password"></p>
+
+    <p>男<input type="radio" name="sex" value="1"></p>
+    <p>女<input type="radio" name="sex" value="2"></p>
+    <p><h2>兴趣</h2></p>
+    <p>女<input type="checkbox" name="hobby"></p>
+    <p>女孩<input type="checkbox" name="hobby"></p>
+    <p>女人<input type="checkbox" name="bodyhobby"></p>
+    <p>提交<input type="submit" value="提交"></p>
+
+    <p><input type="button" value="按钮"></p>
+    <p><input type="file" value="文件啊啊"></p>
+    <select name="province" multiple="multiple" size="3">
+        <optgroup label="河北">
+            <option value="11">廊坊</option>
+            <option value="12">成都</option>
+            <option value="13">邯郸</option>
+            <option value="14">石家庄</option>
+        </optgroup>
+        <option value="2">河南</option>
+        <option value="3">山东</option>
+        <option value="4">广西</option>
+        <option value="5">广东</option>
+        <option value="6">湖南</option>
+
+    </select><br>
+    <p>备注<textarea name="qq"></textarea></p>
+    <p><label for="www">姓名</label></label>
+    <input id="www" type="text"></p>
+    <fieldset>
+        <legend>个人简介</legend>
+        <input type="text">
+    </fieldset>
+
+    </form>
+
+</body>
+</html>
