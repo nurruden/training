@@ -1,0 +1,13 @@
+#www{
+    background-color: aqua;
+    color: darkblue;
+    width: 300px;
+    height: 300px;
+}
+
+p{
+    background-color: red;
+    color: black;
+    width: 300px;
+    height: 300px;
+}
