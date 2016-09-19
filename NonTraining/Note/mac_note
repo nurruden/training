@@ -1,0 +1,21 @@
+# Remove all Dock icons[OCD]
+#### 用下面命令移除所有dock icon，除去正在使用的
+```
+defaults write com.apple.dock static-only -boolean true; killall Dock
+```
+#### 用下面命令恢复所有dock icon。
+```
+defaults delete com.apple.dock static-only; killall Dock
+```
+# 全键盘控制
+#### 选择System Preferences > Keyboard，在Shortcuts标签页中选择All controls，当sublime don't save时，按空格即可。
+
+# mac 快捷键文档
+```
+https://support.apple.com/zh-cn/HT201236
+```
+https://support.apple.com/zh-cn/HT201236
+#设置 Trackpad 轻点来点按
+
+#### 默认情况下按下触摸板才是点按（click）。我喜欢设置成用轻点作为点按：选择System Preferences > Trackpad，在Point & Click标签页中选中Tap to click。
+
