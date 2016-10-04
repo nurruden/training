@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>property_selector</title>
+    <style>
+        p[suoning='girl']{
+            font-size: 40px;
+            color:darkred;
+        }
+         p[suoning|='boy']{
+            font-size: 40px;
+            color:darkred;
+        }
+        p:before{
+            content: "start";
+            color:red;
+        }
+        p:after{
+            content:"end";
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div suoning="boy">Allan</div>
+    <div suoning="girl">Horton</div>
+    <p suoning="girl">Angela</p>
+    <p suoning="boy-girl">Eric</p>
+    <p>Skye</p>
+    <p>Vic</p>
+</body>
+</html>
