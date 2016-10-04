@@ -1,0 +1,6 @@
+* 在搜索条件短语中使用引号，如搜索"pairs hotel"，就会排除其他的酒店
+* 使用形容词搜索，缩小搜索范围
+* 排除不想要的结果，如"digital cameral" -Nikon,即排斥尼康品牌
+* 通过数值范围获取特定信息，如"digital cameral" $100...$300
+* 搜索特定网站。如"pairs hotel" site:nytimes.com
+* 搜索特定类型文件，如 "personal budget" filetype:xls
